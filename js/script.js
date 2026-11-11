@@ -67,25 +67,20 @@ else {
     }
     document.getElementById("descuento").value = descuento.toLocaleString();
 
-    //calcular el iva (19% excluyendo huevo, leche y pan)
-  let iva = 0;
+    //calcular el iva 
+  let iva = subtotal * 0.19;
+if (producto.value === "huevos" || producto.value === "leche" || producto.value === "pan"){
+    document.getElementById("iva").style.background = "green";
+}
 
-  if (
-    productoText !== "huevo" &&
-    productoText !== "leche" &&
-    productoText !== "pan"
-  ) {
+else{
+    document.getElementById("iva").style.background = "white";
+}
+document.getElementById("iva").value = iva.toLocaleString();
 
-  let iva = (subtotal - descuento) * 0.19;
-    document.getElementById("iva").value = iva.toLocaleString();
-  }
-
-  //4. calcular y mostrar  el total a pagar
-  let total = subtotal - descuento + iva;
-  document.getElementById("total").value = total.toLocaleString();
-
-  document.getElementById("total").style.background = "#88E788";
-
+//calcular el total
+let total = subtotal - descuento + iva;
+document.getElementById("total").value = total.toLocaleString();
 
 }
 
